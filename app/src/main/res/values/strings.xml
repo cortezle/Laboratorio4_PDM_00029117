@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Laboratorio4_PDM</string>
+    <string name="movie_name_string">movie_name</string>
+    <string name="movie_title_string">movie_title</string>
+    <string name="rate_ex_string">movie_rate</string>
+    <string name="lorem_30_string">lorem_30</string>
+    <string name="runtime_ex_string">runtime</string>
+</resources>
