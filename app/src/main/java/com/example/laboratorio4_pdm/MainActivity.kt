@@ -1,10 +1,13 @@
 package com.example.laboratorio4_pdm
 
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initRecyclerView()
     }
 
     fun initRecyclerView(){
@@ -28,7 +32,45 @@ class MainActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = movieAdapter
         }
+        add_movie_btn.setOnClickListener(
+                fetchMo
+        )
 
 
     }
+
+    fun addMovieToList(movie: Movie){
+        movieList.add(movie)
+        movieAdapter.changeList(movieList)
+        Log.d("Number",movieList.size.toString())
+    }
+
+    private inner class FetchMovie : AsyncTask<String, Void, String>(){
+        override fun doInBackground(vararg params: String): String {
+            if (params.isNullOrEmpty()) return ""
+
+            val movieName = params[0]
+            val movieURL = NetworkUtils()?.buildSearchUrl(movieName)
+
+            return try {
+                NetworkUtils().getResponseFromHttpUrl(movieURL)
+            } catch (e:IOException){
+                ""
+            }
+
+
+
+        }
+
+        override fun onPostExecute(movieInfo : String){
+            super.onPostExecute(movieInfo)
+            if(!movieInfo.isEmpty()){
+                val movieJson = JSON
+            }
+        }
+
+    }
+
+
+
 }

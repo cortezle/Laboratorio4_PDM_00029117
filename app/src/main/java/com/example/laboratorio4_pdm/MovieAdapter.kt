@@ -1,5 +1,6 @@
 package com.example.laboratorio4_pdm
 
+import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
 import android.text.Layout
 import android.view.LayoutInflater
@@ -41,4 +42,7 @@ class MovieAdapter(var movies: List<Movie>): RecyclerView.Adapter<MovieAdapter.V
             movie_runtime_cv.text = item.Runtime
         }
     }
+
+
+
 }
